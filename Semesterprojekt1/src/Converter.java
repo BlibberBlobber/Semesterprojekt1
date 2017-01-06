@@ -2,15 +2,17 @@ import java.util.ArrayList;
 
 public class Converter {
 
-	ArrayList<Double> list;
+	private ArrayList<Double> list;
+	private double puls;
 	
 	public Converter() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	
-	public void setList(ArrayList<Double> list){
+	public void doPuls(ArrayList<Double> list){
 		this.list = list;
+		
 	}
 
+	
 }

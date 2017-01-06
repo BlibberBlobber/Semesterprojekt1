@@ -5,8 +5,9 @@ public class Reciever {
 
 	private int numberOfInputs = 20;
 	private double parsedDouble = 0.0;
-	private SerialPort port;
 	private String bufferInput = "";
+	
+	private SerialPort port;
 	private ArrayList<Double> list = new ArrayList<Double>();
 	
 			
@@ -64,7 +65,7 @@ public class Reciever {
 		return list;
 	}
 			
-	public void setupSignal(){
+	private void setupSignal(){
 		try{
 			// Laver et array af porte og sætter de tilgængelige porte ind
 			String[] portArray = SerialPortList.getPortNames();
