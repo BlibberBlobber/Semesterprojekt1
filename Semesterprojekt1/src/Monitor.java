@@ -23,7 +23,7 @@ public class Monitor {
 			list = reciever.getValue();
 			
 			// giver converter listen med de 600 tal
-			converter.setList(list);
+			converter.doPuls(list);
 			
 			/*
 			 * Skal vi controllere alt herfra eller s�tter vi en chain igang der spytter en puls ud p� den anden side?

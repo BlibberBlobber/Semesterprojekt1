@@ -1,20 +1,30 @@
 
 public class FileWriter {
 	
-	private double doubleToWrite;
+	private String fileName = "Puls.txt";
+	private String path = "";
+	private double puls;
 	
 	
 	public FileWriter() {
-		if(/*filen ikke eksistere*/) makeEmptyFile();
+		if(!doFileExist(fileName)) makeEmptyFile();
 	}
 	
-	public void writeDoubleToFile(){
+	public void writeDoubleToFile(double puls){
 		
 		// sæt ind hvis filen er tom ellers så gå en linje ned og skriv
 		
 	}
 	
 	public void makeEmptyFile(){
-		// laver en tom txt fil et sted
+		// brug fileName og path
+		// laver en tom txt fil i path
+	}
+	
+	public boolean doFileExist(String fileName){
+		
+		// check om filen med navnet fileName findes på path 
+		
+		return true;
 	}
 }
