@@ -6,34 +6,35 @@ public class Monitor {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
+		//fÃ¸rstetest
 		// test for git
 		//heodjednk
-		//instantiere reciever objektet så vi åbner porten og gør klar til at læse
+		//instantiere reciever objektet sï¿½ vi ï¿½bner porten og gï¿½r klar til at lï¿½se
 		Reciever reciever = new Reciever();
-		// instantiere FileWriter objektet så vi kan skrive til en txt fil på computeren
+		// instantiere FileWriter objektet sï¿½ vi kan skrive til en txt fil pï¿½ computeren
 		FileWriter filewriter = new FileWriter();
-		// instantiere converter objektet, så vi kan få omregnet alle vores værdier til en puls
+		// instantiere converter objektet, sï¿½ vi kan fï¿½ omregnet alle vores vï¿½rdier til en puls
 		Converter converter = new Converter();
 			
-		//løkken vi er i så længe vi måler {
+		//lï¿½kken vi er i sï¿½ lï¿½nge vi mï¿½ler {
 			
-			// laver en liste med 600 double værdier i
+			// laver en liste med 600 double vï¿½rdier i
 			list = reciever.getValue();
 			
 			// giver converter listen med de 600 tal
 			converter.setList(list);
 			
 			/*
-			 * Skal vi controllere alt herfra eller sætter vi en chain igang der spytter en puls ud på den anden side?
+			 * Skal vi controllere alt herfra eller sï¿½tter vi en chain igang der spytter en puls ud pï¿½ den anden side?
 			 * 
-			 * Laver vi en form for kalibrering af tallene, så vi ikke skriver snittet af 3 toppe ud men snittet af måske 5 par af toppe?
+			 * Laver vi en form for kalibrering af tallene, sï¿½ vi ikke skriver snittet af 3 toppe ud men snittet af mï¿½ske 5 par af toppe?
 			 * Tid?
 			 * 
-			 * kik lige om det egentligt er nødvendigt at lave en liste til porte, hvis vi alligevel tager den første hver gang?
+			 * kik lige om det egentligt er nï¿½dvendigt at lave en liste til porte, hvis vi alligevel tager den fï¿½rste hver gang?
 			 */
 			
 			
-			//System.out.println("Vi printer den modtaget liste i doubles, én på hver linje ");
+			//System.out.println("Vi printer den modtaget liste i doubles, ï¿½n pï¿½ hver linje ");
 			
 //			for(double val:list){
 //				System.out.println(val + "  ");
