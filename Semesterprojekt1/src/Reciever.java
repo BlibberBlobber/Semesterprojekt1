@@ -49,6 +49,8 @@ public class Reciever {
 							list.add(parsedDouble);
 						} //else System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
 
+				// gem resten af det og sæt på enden af den bæste måling
+						// hej 
 						// slet det forerste som vi har taget, så vi er klar til at gemme det næste tal i rækken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 					}
