@@ -6,6 +6,7 @@ public class Monitor {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
+		// test for git
 		//instantiere reciever objektet så vi åbner porten og gør klar til at læse
 		Reciever reciever = new Reciever();
 		// instantiere FileWriter objektet så vi kan skrive til en txt fil på computeren
