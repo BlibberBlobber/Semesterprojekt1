@@ -25,8 +25,6 @@ public class Monitor {
 			puls = converter.doPuls(list);
 			
 			/*
-			 * Skal vi controllere alt herfra eller s�tter vi en chain igang der spytter en puls ud p� den anden side?
-			 * 
 			 * Laver vi en form for kalibrering af tallene, s� vi ikke skriver snittet af 3 toppe ud men snittet af m�ske 5 par af toppe?
 			 * Tid?
 			 * 
@@ -34,11 +32,11 @@ public class Monitor {
 			 */
 			
 			
-			//System.out.println("Vi printer den modtaget liste i doubles, �n p� hver linje ");
+			System.out.println("Vi printer den modtaget liste i integers");
 			
-//			for(double val:list){
-//				System.out.println(val + "  ");
-//			}		
+			for(int val:list){
+				System.out.println(val + "  ");
+			}		
 	}
 	
 }

@@ -12,6 +12,8 @@ public class Converter {
 	public double doPuls(ArrayList<Integer> list){
 		this.list = list;
 		
+		// do puls
+		
 		return puls;
 		
 	}
