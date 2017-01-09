@@ -4,6 +4,7 @@ public class FileWriter {
 	private String fileName = "Puls.txt";
 	private String path = "";
 	private double puls;
+	//hej
 	
 	
 	public FileWriter() {
@@ -12,7 +13,7 @@ public class FileWriter {
 	
 	public void writeDoubleToFile(double puls){
 		
-		// sæt ind hvis filen er tom ellers så gå en linje ned og skriv
+		// sï¿½t ind hvis filen er tom ellers sï¿½ gï¿½ en linje ned og skriv
 		
 	}
 	
@@ -23,7 +24,7 @@ public class FileWriter {
 	
 	public boolean doFileExist(String fileName){
 		
-		// check om filen med navnet fileName findes på path 
+		// check om filen med navnet fileName findes pï¿½ path 
 		
 		return true;
 	}
