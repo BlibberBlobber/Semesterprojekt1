@@ -52,7 +52,7 @@ public class Reciever {
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 					}
 					
-					if(bufferInput.length()>){}
+					//if(bufferInput.length()>){}
 					
 				} // vi venter lige 40 milisekunder, da der ikke var noget i bufferen, for lige at give dne en chance..
 				else Thread.sleep(40);
