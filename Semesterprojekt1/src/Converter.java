@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Converter {
 
-	private ArrayList<Double> list; /*fucbois
+	private ArrayList<Integer> list; 
 	private double puls;
 	
 	public Converter() {
 		
 	}
 	
-	public double doPuls(ArrayList<Double> list){
+	public double doPuls(ArrayList<Integer> list){
 		this.list = list;
 		
 		return puls;

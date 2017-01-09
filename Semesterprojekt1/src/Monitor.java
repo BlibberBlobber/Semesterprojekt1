@@ -2,9 +2,8 @@ import java.util.ArrayList;
 
 public class Monitor {
 
-	private static ArrayList<Double> list = new ArrayList<Double>();
+	private static ArrayList<Integer> list = new ArrayList<Integer>();
 	private static double puls;
-	
 	public static void main(String[] args) throws InterruptedException {
 		
 		//førstetest

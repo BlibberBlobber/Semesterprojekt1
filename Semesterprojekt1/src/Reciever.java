@@ -4,12 +4,12 @@ import jssc.*;
 public class Reciever {
 
 	private int numberOfInputs = 20;
-	private double parsedDouble = 0.0;
+	private int parsedInt = 0;
 	private String bufferInput = "";
 	private String rest = ""; 
 	
 	private SerialPort port;
-	private ArrayList<Double> list = new ArrayList<Double>();
+	private ArrayList<Integer> list = new ArrayList<Integer>();
 	
 			
 	// Constructor for klassen med setup af porten, så vi kan læse det arduinoen udskriver
@@ -17,7 +17,7 @@ public class Reciever {
 		setupSignal();
 	}
 			
-	public ArrayList<Double> getValue() throws InterruptedException {
+	public ArrayList<Integer> getValue() throws InterruptedException {
 		
 		// gør listen tom, så vi er klar på ny 
 		list.clear();
@@ -39,11 +39,11 @@ public class Reciever {
 					while(bufferInput.length()>5 && list.size()<numberOfInputs){
 						
 						// parser den næste værdi i stængen og gemmer den i parsedDouble
-						parsedDouble=Double.parseDouble(bufferInput.substring(0, bufferInput.indexOf("-")));
+						parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
 						
 						// hvis det tal vi lige har konvertreet fra strængen ikke er i intervallet 0-5, smider vi det ud, for der er sket en fejl
-						if(!(parsedDouble>5 || parsedDouble<0)){
-							list.add(parsedDouble);
+						if(!(parsedInt>1024 || parsedInt<0)){
+							list.add(parsedInt);
 						} //else System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
 
 				// gem resten af det og sæt på enden af den bæste måling
