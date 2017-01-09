@@ -6,6 +6,7 @@ public class Reciever {
 	private int numberOfInputs = 20;
 	private double parsedDouble = 0.0;
 	private String bufferInput = "";
+	private String rest = ""; 
 	
 	private SerialPort port;
 	private ArrayList<Double> list = new ArrayList<Double>();
@@ -25,10 +26,10 @@ public class Reciever {
 		while(list.size()<numberOfInputs){  
 			
 			try{
-				// Ser om der ligger data i bufferen 
+				// Ser om der ligger data i bufferen, hvis der gør, så skal vi da se på det!
 				if(port.getInputBufferBytesCount() > 0){
 					
-					// put hvad der er på buffen i en lang streng - bufferInput
+					// Put hvad der er på buffen i en lang streng - bufferInput
 					bufferInput = port.readString();
 					
 					// Fjern den første værdi, fordi den tit var trash
@@ -36,13 +37,9 @@ public class Reciever {
 					
 					// loop vi er i så længe Strængen er længere end 5 og antalet af elementer i vores ArrayList er under numberOfInputs
 					while(bufferInput.length()>5 && list.size()<numberOfInputs){
-				
-						//System.out.println(bufferInput);
 						
 						// parser den næste værdi i stængen og gemmer den i parsedDouble
 						parsedDouble=Double.parseDouble(bufferInput.substring(0, bufferInput.indexOf("-")));
-						
-						//System.out.println("parsed double = " + parsedDouble);
 						
 						// hvis det tal vi lige har konvertreet fra strængen ikke er i intervallet 0-5, smider vi det ud, for der er sket en fejl
 						if(!(parsedDouble>5 || parsedDouble<0)){
@@ -50,10 +47,13 @@ public class Reciever {
 						} //else System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
 
 				// gem resten af det og sæt på enden af den bæste måling
-						// hej 
+						
 						// slet det forerste som vi har taget, så vi er klar til at gemme det næste tal i rækken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 					}
+					
+					if(bufferInput.length()>){}
+					
 				} // vi venter lige 40 milisekunder, da der ikke var noget i bufferen, for lige at give dne en chance..
 				else Thread.sleep(40);
 			

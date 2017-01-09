@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Monitor {
 
 	private static ArrayList<Double> list = new ArrayList<Double>();
-	private double puls;
+	private static double puls;
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -23,7 +23,7 @@ public class Monitor {
 			list = reciever.getValue();
 			
 			// giver converter listen med de 600 tal
-			converter.doPuls(list);
+			puls = converter.doPuls(list);
 			
 			/*
 			 * Skal vi controllere alt herfra eller s�tter vi en chain igang der spytter en puls ud p� den anden side?

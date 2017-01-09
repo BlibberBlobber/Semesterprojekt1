@@ -9,8 +9,10 @@ public class Converter {
 		
 	}
 	
-	public void doPuls(ArrayList<Double> list){
+	public double doPuls(ArrayList<Double> list){
 		this.list = list;
+		
+		return puls;
 		
 	}
 
