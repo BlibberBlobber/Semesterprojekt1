@@ -1,13 +1,11 @@
 
-public class FileWriter {
+public class OurFileWriter {
 	
 	private String fileName = "Puls.txt";
 	private String path = "";
 	private double puls;
-	//hej
 	
-	
-	public FileWriter() {
+	public OurFileWriter() {
 		if(!doFileExist(fileName)) makeEmptyFile();
 	}
 	
