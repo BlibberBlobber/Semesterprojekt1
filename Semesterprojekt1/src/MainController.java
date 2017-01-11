@@ -11,6 +11,7 @@ public class MainController {
 		Converter converter = new Converter();
 			
 		// est fra toby
+		//deez nuuuuuutsss
 		
 		//løkken vi er i så længe vi måler {
 			
