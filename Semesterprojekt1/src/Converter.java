@@ -6,6 +6,7 @@ public class Converter {
 	private double puls;
 	private double slope;
 	private int x,y;
+	private boolean bSlope;
 	
 	public Converter() {
 		
@@ -14,7 +15,12 @@ public class Converter {
 	public double doPuls(ArrayList<Integer> list){
 		this.list = list;
 		
-		// do puls
+		while(checkSlope()){
+			
+			
+			
+			
+		}
 		
 		return puls;
 		
@@ -27,6 +33,13 @@ public class Converter {
 		// beregn hældning udfra de to koordinater
 		
 		return slope;
+	}
+	
+	public boolean checkSlope(){
+		
+		// kik på værdier til venstre og højre
+		
+		return bSlope;
 	}
 	
 	
