@@ -10,6 +10,8 @@ public class MainController {
 		OurFileWriter filewriter = new OurFileWriter();
 		Converter converter = new Converter();
 			
+		// est fra toby
+		
 		//løkken vi er i så længe vi måler {
 			
 			// laver en liste med 600 double værdier i
