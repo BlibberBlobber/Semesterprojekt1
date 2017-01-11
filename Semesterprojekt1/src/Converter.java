@@ -3,24 +3,31 @@ import java.util.ArrayList;
 public class Converter {
 
 	private ArrayList<Integer> list; 
-	private double puls;
+	private String pulse;
 	private double slope;
 	private int x,y;
-	private boolean isSlope;
+	private boolean isSlope=false;
+	private int pulseCounter;
+	private int arrayCounter=0;
+	
 	
 	public Converter() {
 		
 	}
 	
-	public double doPuls(ArrayList<Integer> list){
+	public String doPulse(ArrayList<Integer> list){
 		this.list = list;
+		arrayCounter++;
 		
-		while(checkSlope()){
-			
-			
-		}
 		
-		return puls;
+	
+			if (checkSlope()) pulseCounter++;
+		
+			
+			//12000 pladser 5 ms, 60000 er et minnut
+		
+		
+		return pulse;
 		
 	}
 	
@@ -35,7 +42,7 @@ public class Converter {
 	
 	public boolean checkSlope(){
 		
-		// kik på værdier til venstre og højre
+		// kig på værdier til venstre og højre
 		// returner true, hvis hvis vi havde en ændring fra positiv til negativ hældning
 		// returner false, hvis overstående 
 		
