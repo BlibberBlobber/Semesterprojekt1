@@ -1,14 +1,16 @@
 import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileWriter {
+public class OurFileWriter {
 	
 	private String fileName = "Puls.txt";
 	private String path = "";
 	private double puls;
 	public boolean append = false;
 	
-	public FileWriter() {
+	public void OurFileWriter() throws IOException {
 		if(!doFileExist(fileName)) makeEmptyFile();
 	}
 	
@@ -18,12 +20,12 @@ public class FileWriter {
 		// 
 	}
 	
-	public void makeEmptyFile(){
-		Writer fw = new FileWriter(fileName, append = true);
+	public void makeEmptyFile() throws IOException{
+		FileWriter fw = new FileWriter(fileName, append = true);
 
 	    BufferedWriter bw = new BufferedWriter(fw);
 	    PrintWriter pw = new PrintWriter(bw);
-	    pw.println(input);
+	    pw.println(bw);
 	    pw.close();
 	    // System.out.println("Skrevet til fil:"+input);
 	}
