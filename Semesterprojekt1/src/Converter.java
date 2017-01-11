@@ -6,7 +6,7 @@ public class Converter {
 	private double puls;
 	private double slope;
 	private int x,y;
-	private boolean bSlope;
+	private boolean isSlope;
 	
 	public Converter() {
 		
@@ -16,8 +16,6 @@ public class Converter {
 		this.list = list;
 		
 		while(checkSlope()){
-			
-			
 			
 			
 		}
@@ -38,8 +36,10 @@ public class Converter {
 	public boolean checkSlope(){
 		
 		// kik på værdier til venstre og højre
+		// returner true, hvis hvis vi havde en ændring fra positiv til negativ hældning
+		// returner false, hvis overstående 
 		
-		return bSlope;
+		return isSlope;
 	}
 	
 	
