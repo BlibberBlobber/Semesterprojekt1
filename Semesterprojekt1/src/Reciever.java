@@ -8,8 +8,9 @@ public class Reciever {
 	private int baudRate = 38400;
 	private int numberOfInputs = 20;
 	private int parsedInt = 0;
+	private int a = 0,b = 0,c = 0,d = 0;
 	private String bufferInput = "";
-	private String rest = ""; 
+	
 	
 	private SerialPort port;
 	private ArrayList<Integer> list = new ArrayList<Integer>();
@@ -33,9 +34,7 @@ public class Reciever {
 				if(port.getInputBufferBytesCount() > 0){
 					
 					// Put hvad der er p� buffen i en lang streng - bufferInput
-					//System.out.println("streng inden append " + bufferInput);
 					bufferInput += port.readString();
-					//System.out.println("streng efter append " + bufferInput);
 					
 					System.out.println(bufferInput);
 					
@@ -53,16 +52,21 @@ public class Reciever {
 						
 						// hvis det tal vi lige har konvertreet fra str�ngen ikke er i intervallet 0-5, smider vi det ud, for der er sket en fejl
 						if(!(parsedInt>1024 || parsedInt<0)){
-							list.add(parsedInt);
-							//System.out.println("parsed int " + parsedInt + " int i arrayet " + list.get(i));
-							//i++;
+							
+							if(a==0) a=parsedInt;
+							else if(b==0) b=parsedInt;
+							else if(c==0) c=parsedInt;
+							else if (d==0) d=parsedInt;
+							
+							if(a>0 && b>0 && c>0 && d>0) {
+								list.add((a+b+c+d)/4);
+								a=0;b=0;c=0;d=0;
+							}
 						} //else System.out.println("Tallet var udenfor intervallet og vi s�tter det ikke ind!");
 
 						// slet det forerste som vi har taget, s� vi er klar til at gemme det n�ste tal i r�kken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 					}
-					
-					//if(bufferInput.length()>){}
 					
 				} // vi venter lige 40 milisekunder, da der ikke var noget i bufferen, for lige at give dne en chance..
 				else Thread.sleep(40);
@@ -73,7 +77,6 @@ public class Reciever {
 				System.out.println("substring error: " + bufferInput);
 			}
 		}
-		//returnere listen med 600 m�linger til monitoren
 		return list;
 	}
 			
