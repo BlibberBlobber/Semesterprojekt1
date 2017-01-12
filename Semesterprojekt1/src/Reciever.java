@@ -16,24 +16,24 @@ public class Reciever {
 	private ArrayList<Integer> list = new ArrayList<Integer>();
 	
 			
-	// Constructor for klassen med setup af porten, s� vi kan l�se det arduinoen udskriver
+	// Constructor for klassen med setup af porten, så vi kan løse det arduinoen udskriver
 	public Reciever(){
 		setupSignal();
 	}
 			
 	public ArrayList<Integer> getValue() throws InterruptedException {
 		
-		// g�r listen tom, s� vi er klar p� ny 
+		// gør listen tom, så vi er klar på ny 
 		list.clear();
 		
-		// Hvis listen ikke er 600 lang, s� putter vi flere v�rdier ind.
+		// Hvis listen ikke er 600 lang, så putter vi flere værdier ind.
 		while(list.size()<numberOfInputs){  
 			
 			try{
-				// Ser om der ligger data i bufferen, hvis der g�r, s� skal vi da se p� det!
+				// Ser om der ligger data i bufferen, hvis der gør, så skal vi da se på det!
 				if(port.getInputBufferBytesCount() > 0){
 					
-					// Put hvad der er p� buffen i en lang streng - bufferInput
+					// Put hvad der er på buffen i en lang streng - bufferInput
 					bufferInput += port.readString();
 					
 					System.out.println(bufferInput);
@@ -44,27 +44,29 @@ public class Reciever {
 						først = false;
 					}
 					
-					// loop vi er i s� l�nge Str�ngen er l�ngere end 5 og antalet af elementer i vores ArrayList er under numberOfInputs
+					// loop vi er i, så længe der er en bindestreg Strengen og antallet af elementer i vores ArrayList er under numberOfInputs
 					while(bufferInput.contains("-") && list.size()<numberOfInputs){
 						
-						// parser den n�ste v�rdi i st�ngen og gemmer den i parsedDouble
+						// parser den næste værdi i strengen og gemmer den i parsedDouble
 						parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
 						
-						// hvis det tal vi lige har konvertreet fra str�ngen ikke er i intervallet 0-5, smider vi det ud, for der er sket en fejl
-						if(!(parsedInt>1024 || parsedInt<0)){
+						// hvis tallene vi lige har konverteret fra strengen er i intervallet [0:1024], så brug 4 værdier og beregn gennemsnittet
+						// Vi fylder en plads i listen op med gennemsnittet af fire værdier
+						if((parsedInt<1024 && parsedInt>=0)){
 							
-							if(a==0) a=parsedInt;
-							else if(b==0) b=parsedInt;
-							else if(c==0) c=parsedInt;
-							else if (d==0) d=parsedInt;
-							
-							if(a>0 && b>0 && c>0 && d>0) {
-								list.add((a+b+c+d)/4);
-								a=0;b=0;c=0;d=0;
+							if(a==-1) a=parsedInt;
+							else if(b==-1) b=parsedInt;
+							else if(c==-1) c=parsedInt;
+							else if (d==-1) { 
+								d=parsedInt;
+								list.add(Math.round((a+b+c+d)/4));
+								a=-1;b=-1;c=-1;d=-1;
 							}
-						} //else System.out.println("Tallet var udenfor intervallet og vi s�tter det ikke ind!");
+							
+														
+						} //else System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
 
-						// slet det forerste som vi har taget, s� vi er klar til at gemme det n�ste tal i r�kken
+						// slet det forerste som vi har taget, så vi er klar til at gemme det næste tal i rækken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 					}
 					
@@ -82,17 +84,17 @@ public class Reciever {
 			
 	private void setupSignal(){
 		try{
-			// Laver et array af porte og s�tter de tilg�ngelige porte ind
+			// Laver et array af porte og sætter de tilgængelige porte ind
 			String[] portArray = SerialPortList.getPortNames();
-			// Gemmer navnet p� den f�rste port i portlisten i portName
+			// Gemmer navnet på den første port i portlisten i portName
 			String portName = portArray[0];
-			// laver en instans af SerialPort (jssc), port, med argumentet portName, som var dne f�rste port i listen af porte
+			// laver en instans af SerialPort (jssc), port, med argumentet portName, som var dne første port i listen af porte
 			port = new SerialPort(portName);
-			// porten �bnes
+			// porten åbnes
 			port.openPort();
 			
-			// standard parametre der skal s�tes ved �bning af port
-			// - 9600 er baud rate, som s�ttes til at v�re det samme som arduinoen k�rer
+			// standard parametre der skal sætes ved åbning af port
+			// - 9600 er baud rate, som sættes til at være det samme som arduinoen kører
 			// - 8 er antallet af dataBits
 			// - 1 er stop bits
 			// - 0 er paritetstypen 
