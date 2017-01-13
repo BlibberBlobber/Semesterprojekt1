@@ -5,13 +5,13 @@ import java.io.IOException;
 
 public class OurFileWriter {
 	
-	//private String path = "C:\\Users\\Morten\\PulsMålinger\\Nåtz.txt";
+	private String path = "C:\\Users\\Morten\\PulsMålinger\\Nåtz.txt";
 	
 	// constructor
 	public OurFileWriter() {
 	}
 	
-	public void writeDoubleToFile(double puls, String path) throws IOException{
+	public void writeDoubleToFile(double puls) throws IOException{
 		
 		// Instantier alle filskriverne på én linje
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(path),true));
