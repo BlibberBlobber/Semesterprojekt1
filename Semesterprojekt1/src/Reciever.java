@@ -6,7 +6,7 @@ public class Reciever {
 	private int i = 0;
 	private boolean først = true;
 	private int baudRate = 38400;
-	private int numberOfInputs = 200;
+	private int numberOfInputs = 600;
 	private int parsedInt = 0;
 	private int a = -1,b = -1,c = -1,d = -1, snit=0;
 	private String bufferInput = "";
@@ -36,7 +36,7 @@ public class Reciever {
 					// Put hvad der er på buffen i en lang streng - bufferInput
 					bufferInput += port.readString();
 					
-					System.out.println(bufferInput);
+					//System.out.println(bufferInput);
 					
 					// Fjern den f�rste v�rdi, fordi den tit var trash
 					if(først){
@@ -68,21 +68,21 @@ public class Reciever {
 							
 							if(a==-1) {
 								a=parsedInt;
-								System.out.println("a = " + parsedInt);
+								//System.out.println("a = " + parsedInt);
 							}
 							else if(b==-1) {
 								b=parsedInt;
-								System.out.println("b = " + parsedInt);
+								//System.out.println("b = " + parsedInt);
 							}
 							else if(c==-1) {
 								c=parsedInt;
-								System.out.println("c = " + parsedInt);
+								//System.out.println("c = " + parsedInt);
 							}
 							else if (d==-1) { 
-								System.out.println("D = " + parsedInt);
+								//System.out.println("D = " + parsedInt);
 								d=parsedInt;
 								list.add(Math.round((a+b+c+d)/4));
-								System.out.println(" snit = " + Math.round((a+b+c+d)/4));
+								//System.out.println(" snit = " + Math.round((a+b+c+d)/4));
 								a=-1;b=-1;c=-1;d=-1;
 							}
 							

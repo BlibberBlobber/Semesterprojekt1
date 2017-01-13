@@ -7,6 +7,7 @@ public class Converter {
 	private boolean ready = false;
 	private int pulseCounter = 0;
 	private int arrayCounter = 0;
+	private int nabNutz = 0;
 	
 	public Converter() {
 	}
@@ -16,11 +17,11 @@ public class Converter {
 		arrayCounter++;
 		
 		// går i for each loop og laver calc slope på alle par
-		for(int index : list){
+		for(int index = 0; index < list.size(); index++){
 			
 			// returnere hældning i punktet vi er i, ved brug af punktet før og efter 
-			if(index==list.size() || index==0);
-			else slope = calcSlope(list.get(index-1), list.get(index +1));
+			if(index==list.size()-1 || index==0);
+			else slope = calcSlope(list.get(index - 1), list.get(index + 1));
 			
 			// tæller pulseCounter op hvis vi har en systole og vi er over vores grænseværdi(meanSlope/middelværdi)
 			if(slope > 0 && list.get(index) > meanSlope && ready){
@@ -43,9 +44,16 @@ public class Converter {
 		
 		// hvis arrayCounter er ? så er der gået et minut, og vi vil gerne retunere værdien for pulsen 
 		if(arrayCounter==5)	{
-			return pulseCounter/60;
+			
+			meanSlope = blahSlope;
+			nabNutz = pulseCounter;
+			pulseCounter = 0;
+			arrayCounter=0;
+			return nabNutz;
 		}
 		else{
+			System.out.println("pulseCounter " + pulseCounter );
+			System.out.println("blahSlope " + blahSlope);
 			meanSlope = blahSlope;
 			return -1.1;
 		}

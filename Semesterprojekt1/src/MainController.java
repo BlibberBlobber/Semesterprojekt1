@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class MainController {
 
+	private static int yolo = 0;
 	private static ArrayList<Integer> list = new ArrayList<Integer>();
 	private static double pulse;
 	public static void main(String[] args) throws InterruptedException {
@@ -11,14 +12,16 @@ public class MainController {
 		OurFileWriter filewriter = new OurFileWriter();
 		Converter converter = new Converter();
 			
-		//while(true){
-		
+		while(true){
+			
 		// napper listen
 		list = reciever.getValue();
 		// regner puls udfra listen 
 		pulse = converter.doPulse(list);
+		
+		// vi vil estimere pulsen undervejs hvert 12 sek. som opdatere udfra det forrrige
 				
-		// Hvis pulsen er -1.1, så er de rikke gået et minut, så vi venter med at printe det ud.
+		// Hvis pulsen er -1.1, så er der ikke gået et minut, så vi venter med at printe det ud.
 		if(!(pulse==-1.1))
 			try {
 				filewriter.writeDoubleToFile(pulse);
@@ -26,12 +29,16 @@ public class MainController {
 				e.printStackTrace();
 			}
 				
-		for(int val:list){
-			System.out.println(val + "  ");
-		}		
+//		for(int val:list){
+//			System.out.println(val + "  ");
+//		}	
 		
-		//}
-			
+		if(pulse > 0){
+			System.out.println("\n " + " pulse " + pulse + "\n");
+		}
+		
+		
+		}
 			/*
 			 * Laver vi en form for kalibrering af tallene, s� vi ikke skriver snittet af 3 toppe ud men snittet af m�ske 5 par af toppe?
 			 * Tid?
