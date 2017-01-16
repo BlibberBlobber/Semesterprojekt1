@@ -2,20 +2,19 @@ import java.util.ArrayList;
 import jssc.*;
 
 public class Reciever {
-
-	private int i = 0;
-	private boolean først = true;
+	// test
+	// private String yolo = "";
+	
+	private boolean checkFirst = true;
 	private int baudRate = 38400;
 	private int numberOfInputs = 600;
 	private int parsedInt = 0;
-	private int a = -1,b = -1,c = -1,d = -1, snit=0;
+	private int v1 = -1,v2 = -1,v3 = -1,v4 = -1;
 	private String bufferInput = "";
-	private String yolo = "";
 	
 	private SerialPort port;
 	private ArrayList<Integer> list = new ArrayList<Integer>();
-	
-			
+		
 	// Constructor for klassen med setup af porten, så vi kan løse det arduinoen udskriver
 	public Reciever(){
 		setupSignal();
@@ -39,23 +38,24 @@ public class Reciever {
 					//System.out.println(bufferInput);
 					
 					// Fjern den f�rste v�rdi, fordi den tit var trash
-					if(først){
+					if(checkFirst){
 						Thread.sleep(20);
 						bufferInput += port.readString();
 						bufferInput += bufferInput.substring(bufferInput.indexOf("-"));
-						først = false;
+						checkFirst = false;
 					}
 					
 					// loop vi er i, så længe der er en bindestreg Strengen og antallet af elementer i vores ArrayList er under numberOfInputs
 					while(bufferInput.contains("-") && list.size()<numberOfInputs){
 						
+						// test om der er "null" i input strengen eller om målingen ikke kom med, altså er der 2 bindestreger i rap
 						if(bufferInput.substring(0, bufferInput.indexOf("-")).contains("null") || bufferInput.substring(0, bufferInput.indexOf("-")).equals("")){
-							yolo = bufferInput.substring(0, bufferInput.indexOf("-"));
-							System.out.println("hva fan der var null" + yolo);
+							//yolo = bufferInput.substring(0, bufferInput.indexOf("-"));
+							//System.out.println("hva fan der var null eller ingen" + yolo);
 							bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
 						}
 						
-						// parser den næste værdi i strengen og gemmer den i parsedDouble
+						// parser den næste værdi i strengen og gemmer den i parsedInt
 						if(!(bufferInput.substring(0)=="-")){
 						parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
 						}
@@ -66,28 +66,28 @@ public class Reciever {
 							
 							//System.out.println("ParsedInt " + parsedInt);
 							
-							if(a==-1) {
-								a=parsedInt;
+							if(v1==-1) {
+								v1=parsedInt;
 								//System.out.println("a = " + parsedInt);
 							}
-							else if(b==-1) {
-								b=parsedInt;
+							else if(v2==-1) {
+								v2=parsedInt;
 								//System.out.println("b = " + parsedInt);
 							}
-							else if(c==-1) {
-								c=parsedInt;
+							else if(v3==-1) {
+								v3=parsedInt;
 								//System.out.println("c = " + parsedInt);
 							}
-							else if (d==-1) { 
+							else if (v4==-1) { 
 								//System.out.println("D = " + parsedInt);
-								d=parsedInt;
-								list.add(Math.round((a+b+c+d)/4));
+								v4=parsedInt;
+								list.add(Math.round((v1+v2+v3+v4)/4));
 								//System.out.println(" snit = " + Math.round((a+b+c+d)/4));
-								a=-1;b=-1;c=-1;d=-1;
+								v1=-1;v2=-1;v3=-1;v4=-1;
 							}
 							
 														
-						} else System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
+						} else ; //System.out.println("Tallet var udenfor intervallet og vi sætter det ikke ind!");
 
 						// slet det forerste som vi har taget, så vi er klar til at gemme det næste tal i rækken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
@@ -117,7 +117,7 @@ public class Reciever {
 			port.openPort();
 			
 			// standard parametre der skal sætes ved åbning af port
-			// - 9600 er baud rate, som sættes til at være det samme som arduinoen kører
+			// - 9600 er standard baud rate, som sættes til at være det samme som arduinoen kører
 			// - 8 er antallet af dataBits
 			// - 1 er stop bits
 			// - 0 er paritetstypen 

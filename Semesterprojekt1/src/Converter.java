@@ -9,6 +9,7 @@ public class Converter {
 	private int pulse = 0;
 	
 	public Converter() {
+		
 	}
 	
 	public double doPulse(ArrayList<Integer> list){
@@ -41,27 +42,46 @@ public class Converter {
 		
 		//12000 pladser 5 ms, 60000 er et minut
 		
-		// hvis arrayCounter er 5, så er der gået et minut, og vi vil gerne retunere værdien for pulsen 
-		if(arrayCounter==5)	{
-			
-			// vi sætter en ny baseline udfra de seneste 5 arrays
-			// pulsen er lig det antal puslsag vi har talt
-			// pulsetælleren og listetælleren sættes tilbage til 0, så vi kan blive ved med at måle
+		pulse = pulseCounter;
+		switch(arrayCounter){
+		case 1:
+			return pulse*5;
+		case 2:
+			return pulse*2.5;
+		case 3:
+			return pulse*1.67;
+		case 4:
+			return pulse*1.25;
+		case 5:
 			currentBaseLine = newBaseLine;
-			pulse = pulseCounter;
 			pulseCounter = 0;
 			arrayCounter = 0;
 			return pulse;
 		}
-		else{
-			// System.out.println("pulseCounter " + pulseCounter );
-			// System.out.println("newBaseLine " + newBaseLine);
-			currentBaseLine = newBaseLine;
-			return -1.1;
-		}
+		
+		//safety
+		return pulse;
+
+		// hvis arrayCounter er 5, så er der gået et minut, og vi vil gerne retunere værdien for pulsen 
+//		if(arrayCounter==5)	{
+//			
+//			// vi sætter en ny baseline udfra de seneste 5 arrays
+//			// pulsen er lig det antal puslsag vi har talt
+//			// pulsetælleren og listetælleren sættes tilbage til 0, så vi kan blive ved med at måle
+//			currentBaseLine = newBaseLine;
+//			pulse = pulseCounter;
+//			pulseCounter = 0;
+//			arrayCounter = 0;
+//			return pulse;
+//		} else{
+//			// System.out.println("pulseCounter " + pulseCounter );
+//			// System.out.println("newBaseLine " + newBaseLine);
+//			currentBaseLine = newBaseLine;
+//			return -1.1;
+//		}
 	}
 	
-	public int calcSlope(int x, int y){
+	private int calcSlope(int x, int y){
 		return y-x;
 	}	
 }
