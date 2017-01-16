@@ -48,7 +48,7 @@ public class Converter {
 			meanSlope = blahSlope;
 			nabNutz = pulseCounter;
 			pulseCounter = 0;
-			arrayCounter=0;
+			arrayCounter = 0;
 			return nabNutz;
 		}
 		else{
