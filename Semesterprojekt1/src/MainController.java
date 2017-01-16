@@ -4,10 +4,11 @@ import java.util.ArrayList;
 public class MainController {
 
 	// private static int yolo = 0;
+	private static int i=0;
 	private static ArrayList<Integer> list = new ArrayList<Integer>();
 	private static double pulse;
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		
 		Reciever reciever = new Reciever();
 		OurFileWriter filewriter = new OurFileWriter();
@@ -21,30 +22,30 @@ public class MainController {
 		
 		
 		// vi vil estimere pulsen undervejs hvert 12 sek. som opdatere udfra det forrrige
-		for(int i = 0; i<5;i++){
+		
+		
 			pulse = converter.doPulse(list);
-			System.out.println(pulse);
-		}
+			
+		
+		
 		// efter for er der gået et minut og vi skriver svaret ind i filen
 		try {
+			if(i==4) {
 			filewriter.writeDoubleToFile(pulse);
+			i=0;
+		} else i++;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-				
+	
+		System.out.println("pulse: " + pulse + "");
+		
 //		for(int val:list){
 //			System.out.println(val + "  ");
-//		}	
-		
-		if(pulse > 0){
-			System.out.println("\n " + " pulse " + pulse + "\n");
-		}
-		
+//		}
 		
 		}
 			/*
-			 * Laver vi en form for kalibrering af tallene, s� vi ikke skriver snittet af 3 toppe ud men snittet af m�ske 5 par af toppe?
-			 * Tid?
 			 * kik lige om det egentligt er n�dvendigt at lave en liste til porte, hvis vi alligevel tager den f�rste hver gang?
 			 */	
 	}

@@ -45,14 +45,19 @@ public class Converter {
 		pulse = pulseCounter;
 		switch(arrayCounter){
 		case 1:
+			System.out.println("case 1 = " + pulse*5);
 			return pulse*5;
 		case 2:
+			System.out.println("case 2 = " + pulse*2.5);
 			return pulse*2.5;
 		case 3:
+			System.out.println("case 3 = " + pulse*1.67);
 			return pulse*1.67;
 		case 4:
+			System.out.println("case 4 = " + pulse*1.25);
 			return pulse*1.25;
 		case 5:
+			System.out.println("case 5 = " + pulse);
 			currentBaseLine = newBaseLine;
 			pulseCounter = 0;
 			arrayCounter = 0;

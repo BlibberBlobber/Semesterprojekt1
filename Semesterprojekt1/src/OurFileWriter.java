@@ -5,14 +5,17 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class OurFileWriter {
-	private DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-	private Date date = new Date();
+	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	private DateFormat dateTid = new SimpleDateFormat("hh:mm:ss");
 	private String path = "C:\\Users\\Morten\\PulsMålinger\\Nåtz.txt";
+	private Scanner sc = new Scanner(System.in);
 	
 	// constructor
-	public OurFileWriter() {
+	public OurFileWriter() throws IOException {
+		noteSetup();
 	}
 	
 	public void writeDoubleToFile(double pulse) throws IOException{
@@ -21,9 +24,19 @@ public class OurFileWriter {
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(path),true));
 		
 		//skriv hvad vi har lyst til
-		bf.write("Din puls er " + String.valueOf(pulse) + "\n" + "Dato: " + dateformat.format(date) + "\n");
+		bf.write("Puls: " + String.valueOf(pulse) + "\n");
 		
 		// close dat fuckboi
+		bf.close();
+	}
+	public void noteSetup() throws IOException{
+		
+		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(path),true));
+		System.out.println("Skriv dit navn: ");
+		String name = sc.nextLine();
+		bf.write("\n - - - - - - - - - - - - - ");
+		bf.write("\nNavn: " + name +  "\nDato: " + dateFormat.format(new Date()) + "\n" + "Kl: " + dateTid.format(new Date()) + "\n");
+		bf.write(" - - - - - - - - - - - - - \n \n");
 		bf.close();
 	}
 	
