@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Converter { 
 	
-	private double currentSlope, currentBaseLine = 500, newBaseLine = 0;
-	private boolean ready = false;
+	private double currentSlope = 0, newBaseLine = 0;
+	private double minLine = 300, maxLine = 600;
+	private boolean ready = true;
 	private int pulseCounter = 0;
 	private int arrayCounter = 0;
 	private int pulse = 0;
 	
 	public Converter() {
-		
 	}
 	
 	public double doPulse(ArrayList<Integer> list){
@@ -24,47 +24,53 @@ public class Converter {
 			else currentSlope = calcSlope(list.get(index - 1), list.get(index + 1));
 			
 			// tæller pulseCounter op hvis vi har en systole og vi er over vores grænseværdi(meanSlope/middelværdi)
-			if(currentSlope > 0 && list.get(index) > currentBaseLine && ready){
+			if(currentSlope > 0 && list.get(index) > maxLine && ready){
 				pulseCounter++;
 				ready = false;
 			}
 			
 			// sørger for at vi er klar igen, når vi er under middelværdi og en negativ hældning
-			if(currentSlope < 0 && list.get(index) < currentBaseLine && !ready){
+			if(currentSlope < 0 && list.get(index) < minLine && !ready){
 				ready = true;
 			}
 					
-			// tæl pulseCounter op, når der sker en fortegnsændring fra + til -
+			//beregn ny max og min line
 			newBaseLine += list.get(index);
 		}
-		
-		newBaseLine = newBaseLine/list.size();
+
+		maxLine = (newBaseLine/list.size())*1.7;
+		minLine = newBaseLine/list.size();
+//		System.out.println("maxLine " + maxLine);
+//		System.out.println("minLine " + minLine);
+		newBaseLine = 0;
+		//System.out.println("newBaseLine: " + newBaseLine);
 		
 		//12000 pladser 5 ms, 60000 er et minut
 		
 		pulse = pulseCounter;
 		switch(arrayCounter){
 		case 1:
-			System.out.println("case 1 = " + pulse*5);
+//			System.out.println("case 1 = " + pulse*5);
 			return pulse*5;
 		case 2:
-			System.out.println("case 2 = " + pulse*2.5);
+//			System.out.println("case 2 = " + pulse*2.5);
 			return pulse*2.5;
 		case 3:
-			System.out.println("case 3 = " + pulse*1.67);
+//			System.out.println("case 3 = " + pulse*1.67);
 			return pulse*1.67;
 		case 4:
-			System.out.println("case 4 = " + pulse*1.25);
+//			System.out.println("case 4 = " + pulse*1.25);
 			return pulse*1.25;
 		case 5:
-			System.out.println("case 5 = " + pulse);
-			currentBaseLine = newBaseLine;
+//			System.out.println("case 5 = " + pulse);
+			newBaseLine = 0;
 			pulseCounter = 0;
 			arrayCounter = 0;
 			return pulse;
 		}
 		
 		//safety
+		System.out.println("Saftevand");
 		return pulse;
 
 		// hvis arrayCounter er 5, så er der gået et minut, og vi vil gerne retunere værdien for pulsen 

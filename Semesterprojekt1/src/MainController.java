@@ -40,10 +40,9 @@ public class MainController {
 	
 		System.out.println("pulse: " + pulse + "");
 		
-//		for(int val:list){
-//			System.out.println(val + "  ");
-//		}
-		
+		for(int val:list){
+			System.out.println(val);
+		}		
 		}
 			/*
 			 * kik lige om det egentligt er n�dvendigt at lave en liste til porte, hvis vi alligevel tager den f�rste hver gang?

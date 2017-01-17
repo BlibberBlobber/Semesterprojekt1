@@ -40,12 +40,15 @@ public class Reciever {
 					// Fjern den f�rste v�rdi, fordi den tit var trash
 					if(checkFirst){
 						Thread.sleep(20);
-						bufferInput += port.readString();
-						bufferInput += bufferInput.substring(bufferInput.indexOf("-"));
+						
+						//bufferInput += port.readString();
+						//bufferInput += bufferInput.substring(bufferInput.indexOf("-"));
+						bufferInput = null;
 						checkFirst = false;
 					}
 					
 					// loop vi er i, så længe der er en bindestreg Strengen og antallet af elementer i vores ArrayList er under numberOfInputs
+					try{
 					while(bufferInput.contains("-") && list.size()<numberOfInputs){
 						
 						// test om der er "null" i input strengen eller om målingen ikke kom med, altså er der 2 bindestreger i rap
@@ -57,7 +60,11 @@ public class Reciever {
 						
 						// parser den næste værdi i strengen og gemmer den i parsedInt
 						if(!(bufferInput.substring(0)=="-")){
-						parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
+							try{
+							parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
+							} catch (NumberFormatException ex){
+								System.out.println("NFE ved parsing" + ex);
+							}
 						}
 						
 						// hvis tallene vi lige har konverteret fra strengen er i intervallet [0:1024], så brug 4 værdier og beregn gennemsnittet
@@ -91,6 +98,9 @@ public class Reciever {
 
 						// slet det forerste som vi har taget, så vi er klar til at gemme det næste tal i rækken
 						bufferInput = bufferInput.substring(bufferInput.indexOf("-") + 1);
+					}
+					} catch(NullPointerException ex){
+						
 					}
 					
 				} // vi venter lige 40 milisekunder, da der ikke var noget i bufferen, for lige at give dne en chance..
