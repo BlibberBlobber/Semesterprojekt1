@@ -23,73 +23,43 @@ public class Converter {
 			if(index==list.size()-1 || index==0);
 			else currentSlope = calcSlope(list.get(index - 1), list.get(index + 1));
 			
-			// tæller pulseCounter op hvis vi har en systole og vi er over vores grænseværdi(meanSlope/middelværdi)
+			// tæller pulseCounter op hvis vi har en systole og vi er over vores grænseværdi
 			if(currentSlope > 0 && list.get(index) > maxLine && ready){
 				pulseCounter++;
 				ready = false;
 			}
-			
 			// sørger for at vi er klar igen, når vi er under middelværdi og en negativ hældning
 			if(currentSlope < 0 && list.get(index) < minLine && !ready){
 				ready = true;
-			}
-					
+			}		
 			//beregn ny max og min line
 			newBaseLine += list.get(index);
 		}
 
-		maxLine = (newBaseLine/list.size())*1.7;
+		maxLine = (newBaseLine/list.size())*1.5;
 		minLine = newBaseLine/list.size();
-//		System.out.println("maxLine " + maxLine);
-//		System.out.println("minLine " + minLine);
 		newBaseLine = 0;
-		//System.out.println("newBaseLine: " + newBaseLine);
+
 		
 		//12000 pladser 5 ms, 60000 er et minut
 		
 		pulse = pulseCounter;
 		switch(arrayCounter){
 		case 1:
-//			System.out.println("case 1 = " + pulse*5);
 			return pulse*5;
 		case 2:
-//			System.out.println("case 2 = " + pulse*2.5);
 			return pulse*2.5;
 		case 3:
-//			System.out.println("case 3 = " + pulse*1.67);
 			return pulse*1.67;
 		case 4:
-//			System.out.println("case 4 = " + pulse*1.25);
 			return pulse*1.25;
 		case 5:
-//			System.out.println("case 5 = " + pulse);
 			newBaseLine = 0;
 			pulseCounter = 0;
 			arrayCounter = 0;
 			return pulse;
 		}
-		
-		//safety
-		System.out.println("Saftevand");
 		return pulse;
-
-		// hvis arrayCounter er 5, så er der gået et minut, og vi vil gerne retunere værdien for pulsen 
-//		if(arrayCounter==5)	{
-//			
-//			// vi sætter en ny baseline udfra de seneste 5 arrays
-//			// pulsen er lig det antal puslsag vi har talt
-//			// pulsetælleren og listetælleren sættes tilbage til 0, så vi kan blive ved med at måle
-//			currentBaseLine = newBaseLine;
-//			pulse = pulseCounter;
-//			pulseCounter = 0;
-//			arrayCounter = 0;
-//			return pulse;
-//		} else{
-//			// System.out.println("pulseCounter " + pulseCounter );
-//			// System.out.println("newBaseLine " + newBaseLine);
-//			currentBaseLine = newBaseLine;
-//			return -1.1;
-//		}
 	}
 	
 	private int calcSlope(int x, int y){

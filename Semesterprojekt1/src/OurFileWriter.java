@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class OurFileWriter {
+	private String path = "C:\\Users\\Morten\\PulsMålinger\\Puls.txt";
+	private Scanner sc = new Scanner(System.in);
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	private DateFormat dateTid = new SimpleDateFormat("hh:mm:ss");
-	private String path = "C:\\Users\\Morten\\PulsMålinger\\Nåtz.txt";
-	private Scanner sc = new Scanner(System.in);
 	
 	// constructor
 	public OurFileWriter() throws IOException {
@@ -23,10 +23,10 @@ public class OurFileWriter {
 		// Instantier alle filskriverne på én linje
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(path),true));
 		
-		//skriv hvad vi har lyst til
+		//skriv hvad vi har lyst til til filen
 		bf.write("Puls: " + String.valueOf(pulse) + "\n");
 		
-		// close dat fuckboi
+		// close the bufferedWriter
 		bf.close();
 	}
 	public void noteSetup() throws IOException{

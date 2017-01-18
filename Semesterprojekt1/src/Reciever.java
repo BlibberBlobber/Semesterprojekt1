@@ -35,8 +35,6 @@ public class Reciever {
 					// Put hvad der er på buffen i en lang streng - bufferInput
 					bufferInput += port.readString();
 					
-					//System.out.println(bufferInput);
-					
 					// Fjern den f�rste v�rdi, fordi den tit var trash
 					if(checkFirst){
 						Thread.sleep(20);
@@ -59,7 +57,7 @@ public class Reciever {
 						}
 						
 						// parser den næste værdi i strengen og gemmer den i parsedInt
-						if(!(bufferInput.substring(0)=="-")){
+						if(!(bufferInput.substring(0) == "-")){
 							try{
 							parsedInt=Integer.parseInt(bufferInput.substring(0, bufferInput.indexOf("-")));
 							} catch (NumberFormatException ex){
